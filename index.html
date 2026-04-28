@@ -21,7 +21,7 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background-image: url('LandingPage\pinkMeUp_LandingPage.html');
+      background-image: url('Icons/nails2.jpg');
       background-size: cover;
       background-position: center 40%;
       background-repeat: no-repeat;
@@ -331,7 +331,6 @@
       padding: 0;
     }
 
-    /* modal - now with padding so card doesn't touch edges */
     .modal {
       display: none;
       position: fixed;
@@ -344,7 +343,7 @@
       align-items: center;
       justify-content: center;
       z-index: 2000;
-      padding: 2rem;  /* space from top and bottom */
+      padding: 2rem;
     }
 
     .modal-content {
@@ -396,87 +395,6 @@
     .close-modal:hover {
       transform: scale(0.98);
     }
-
-    /* responsive */
-    @media (max-width: 900px) {
-      .main {
-        padding: 1.2rem 1.4rem 0 1.4rem;
-        gap: 1.5rem;
-      }
-      .cards-row {
-        flex-direction: column;
-        gap: 1.2rem;
-      }
-      .glass-card {
-        width: 100%;
-      }
-      .hero-text h2 {
-        font-size: 2rem;
-      }
-      .hero-text p {
-        font-size: 0.92rem;
-      }
-      .brand h1 {
-        font-size: 1.6rem;
-      }
-      .brand p {
-        font-size: 0.85rem;
-        letter-spacing: 2.5px;
-      }
-      .footer-container {
-        flex-direction: column;
-        text-align: center;
-        gap: 0.6rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero-text h2 {
-        font-size: 1.8rem;
-      }
-      .service-item, .step-item, .contact-item {
-        font-size: 0.78rem;
-        gap: 0.6rem;
-      }
-      .card-title {
-        font-size: 1.35rem;
-      }
-      .book-link {
-        padding: 0.65rem 0.5rem;
-        font-size: 0.8rem;
-      }
-      .main {
-        padding: 1rem 1rem 0 1rem;
-      }
-      .brand p {
-        font-size: 0.75rem;
-        font-weight: 800;
-      }
-      .modal {
-        padding: 1rem;
-      }
-      .modal-content {
-        padding: 1.5rem;
-      }
-      .modal-content h4 {
-        font-size: 1.6rem;
-      }
-      .modal-content p {
-        font-size: 0.85rem;
-      }
-    }
-
-    ::-webkit-scrollbar {
-      width: 5px;
-    }
-    ::-webkit-scrollbar-track {
-      background: rgba(0,0,0,0.1);
-      border-radius: 10px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #FFA5C0;
-      border-radius: 10px;
-    }
   </style>
 </head>
 <body>
@@ -489,8 +407,8 @@
       <p>BOOK · RELAX · GLOW</p>
     </div>
     <div class="auth-group">
-      <a href="prototype\login.html" class="auth-btn">Log in</a>
-      <a href="prototype\register.html" class="auth-btn">Sign up</a>
+      <a href="prototype/login.html" class="auth-btn">Log in</a>
+      <a href="prototype/register.html" class="auth-btn">Sign up</a>
     </div>
   </div>
 
@@ -517,7 +435,7 @@
       <div class="step-item"><i class="fas fa-id-card"></i> <strong>2. Share details</strong> — name, contact, requests</div>
       <div class="step-item"><i class="fas fa-heart"></i> <strong>3. Show up & glow</strong> — just relax</div>
       <div class="booking-wrapper">
-        <a href="prototype\login.html" class="book-link">
+        <a href="prototype/login.html" class="book-link">
           <i class="fas fa-spa"></i> Book your appointment
         </a>
       </div>
