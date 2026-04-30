@@ -40,8 +40,10 @@ form.addEventListener("submit", function(e) {
     }
 });
 
-const logoutBtn = document.getElementById("logoutBtn");
 
-logoutBtn.addEventListener("click", function() {
-    window.location.href = "login.html";
-});
+const logoutBtn = document.getElementById("logoutBtn");
+if (logoutBtn) {
+    logoutBtn.addEventListener("click", function() {
+        window.location.href = "login.html";
+    });
+}
