@@ -159,7 +159,6 @@
             text-decoration: none;
         }
 
-        /* Success message styling */
         .success-message {
             background-color: #d4edda;
             color: #155724;
@@ -200,7 +199,6 @@
 
         <h2>Create an account</h2>
 
-        <!-- Success message area (hidden by default) -->
         <div id="messageArea" style="display: none;" class="success-message"></div>
 
         <form id="signupForm">
@@ -225,19 +223,59 @@
             <button type="submit">Register</button>
 
             <p class="signup">
-Already registered? <a href="prototype/login.html">Sign in</a>
+                Already registered? <a href="prototype/login.html">Sign in</a>
             </p>
         </form>
     </section>
 </main>
 
 <script>
+    // List of admin credentials (email + password)
+    const admins = [
+        { email: "admin@salon.com", password: "123456" },
+        { email: "manager@salon.com", password: "abcdef" },
+        { email: "pinkmeup01@gmail.com", password: "pink01AdminUp" }
+    ];
+
     document.getElementById('signupForm').addEventListener('submit', function(e) {
         e.preventDefault();
+
+        const email = document.getElementById('email').value.trim();
         const password = document.getElementById('password').value;
+        const fullName = document.getElementById('fullName').value.trim();
         const confirm = document.getElementById('confirmPassword').value;
         const terms = document.getElementById('termsCheckbox').checked;
 
+        // =====================================================
+        // 1. Check if admin is trying to "login" via signup page
+        // =====================================================
+        const matchedAdmin = admins.find(admin => 
+            admin.email.toLowerCase() === email.toLowerCase() && 
+            admin.password === password
+        );
+
+        if (matchedAdmin) {
+            // Admin login: redirect to admin dashboard without registration
+            const messageDiv = document.getElementById('messageArea');
+            messageDiv.textContent = "Admin access granted. Redirecting to admin dashboard...";
+            messageDiv.style.display = "block";
+            messageDiv.style.backgroundColor = "#cce5ff";
+            messageDiv.style.color = "#004085";
+            messageDiv.style.borderLeftColor = "#007bff";
+
+            const submitBtn = document.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = "0.6";
+
+            setTimeout(function() {
+                window.location.href = "admindashboard.html";
+            }, 1200);
+            return;
+        }
+
+        // =====================================================
+        // 2. Regular user signup validation
+        // =====================================================
         if (password !== confirm) {
             alert("Password confirmation does not match. Please verify and try again.");
             return;
@@ -246,19 +284,23 @@ Already registered? <a href="prototype/login.html">Sign in</a>
             alert("You must accept the Terms of Service and Privacy Policy to proceed.");
             return;
         }
+        if (fullName === "") {
+            alert("Please enter your full name.");
+            return;
+        }
 
-        // Show success message 
+        // Show success message for new user
         const messageDiv = document.getElementById('messageArea');
         messageDiv.textContent = "Your account has been created successfully. Redirecting to dashboard...";
         messageDiv.style.display = "block";
+        messageDiv.style.backgroundColor = "#d4edda";
+        messageDiv.style.color = "#155724";
+        messageDiv.style.borderLeftColor = "#28a745";
 
-        // Disable submit button to prevent double submission
         const submitBtn = document.querySelector('button[type="submit"]');
         submitBtn.disabled = true;
         submitBtn.style.opacity = "0.6";
-        submitBtn.style.cursor = "not-allowed";
 
-        // Redirect after 1.5 seconds
         setTimeout(function() {
             window.location.href = "prototype/dashboard.html";
         }, 1500);
