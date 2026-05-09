@@ -723,7 +723,7 @@
     }
     .modal-close:hover { background: var(--rose); color: white; }
 
-    
+    /* ─── PROFILE ─── */
     .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 560px; }
     .profile-card {
       background: var(--white);
@@ -960,7 +960,7 @@
       </div>
     </section>
 
-   
+    <!-- ── MY APPOINTMENTS ── -->
     <section id="appointments-view" class="view">
       <div class="view-header">
         <div>
@@ -984,7 +984,7 @@
       </div>
     </section>
 
-    
+    <!-- ── PROFILE ── -->
     <section id="profile-view" class="view">
       <div class="view-header">
         <div>
@@ -1037,7 +1037,9 @@
 <div id="toast"></div>
 
 <script>
-]
+  /* ──────────────────────────────────────────────
+     DATA
+  ─────────────────────────────────────────────── */
   const SERVICES = [
     { id:"n1", category:"Nail Treatments",    name:"Buff and Shine",             price:120, duration:30 },
     { id:"n2", category:"Nail Treatments",    name:"Pedicure with Polish",        price:300, duration:45 },
@@ -1070,7 +1072,7 @@
 
   const CATEGORIES = [...new Set(SERVICES.map(s => s.category))];
 
-
+  /* ── APPOINTMENTS store ── */
   let appointments = [
     {
       id: "a1",
@@ -1105,7 +1107,9 @@
     }
   ];
 
- 
+  /* ──────────────────────────────────────────────
+     WIZARD STATE
+  ─────────────────────────────────────────────── */
   let wizardStep = 1;
   let cartIds    = [];  // service ids in cart
   let activeCat  = CATEGORIES[0];
@@ -1114,6 +1118,9 @@
     date: "", time: "", stylist: ""
   };
 
+  /* ──────────────────────────────────────────────
+     NAVIGATION
+  ─────────────────────────────────────────────── */
   function switchView(viewId) {
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.getElementById(`${viewId}-view`).classList.add('active');
@@ -1128,7 +1135,9 @@
     n.addEventListener('click', () => switchView(n.dataset.view))
   );
 
-
+  /* ──────────────────────────────────────────────
+     OVERVIEW
+  ─────────────────────────────────────────────── */
   function renderOverview() {
     const total    = appointments.length;
     const upcoming = appointments.filter(a => a.status === 'upcoming').length;
@@ -1153,7 +1162,9 @@
     bindRowActions();
   }
 
-
+  /* ──────────────────────────────────────────────
+     APPOINTMENTS LIST
+  ─────────────────────────────────────────────── */
   function apptRow(a) {
     const total = a.services.reduce((s,sv)=>s+sv.price,0);
     const chips = a.services.slice(0,2).map(sv => `<span class="chip">${sv.name}</span>`).join('');
@@ -1210,7 +1221,9 @@
     showToast('Appointment cancelled.');
   }
 
-
+  /* ──────────────────────────────────────────────
+     DETAIL MODAL
+  ─────────────────────────────────────────────── */
   function openDetailModal(id) {
     const a = appointments.find(x => x.id === id);
     if (!a) return;
@@ -1252,7 +1265,9 @@
   }
   document.getElementById('detailOverlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
 
-
+  /* ──────────────────────────────────────────────
+     BOOKING WIZARD
+  ─────────────────────────────────────────────── */
   function resetWizard() {
     wizardStep = 1;
     cartIds    = [];
@@ -1364,7 +1379,7 @@
         const slotDate = new Date(); slotDate.setHours(h,m,0,0);
         if (slotDate <= now) unavail = true;
       }
-     
+      // randomly mark some as booked (demo)
       const hash = (dateVal + slot).split('').reduce((a,c)=>a+c.charCodeAt(0),0);
       if (hash % 7 === 0) unavail = true;
 
@@ -1378,7 +1393,7 @@
     renderTimeSlots();
   }
 
-  
+  /* ── Step navigation ── */
   function gotoStep(n) {
     wizardStep = n;
     for (let i=1;i<=4;i++) {
@@ -1472,6 +1487,9 @@
     setTimeout(() => { switchView('appointments'); }, 800);
   }
 
+  /* ──────────────────────────────────────────────
+     PROFILE
+  ─────────────────────────────────────────────── */
   function saveProfile() {
     const name = document.getElementById('profileName').value.trim();
     if (!name) { showToast('Name cannot be empty.'); return; }
@@ -1484,6 +1502,9 @@
     showToast('Profile updated.');
   }
 
+  /* ──────────────────────────────────────────────
+     UTILS
+  ─────────────────────────────────────────────── */
   function formatDate(d) {
     if (!d) return '';
     const [y,m,day] = d.split('-');
