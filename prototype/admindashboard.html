@@ -8,8 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
-    /* ---------- RESET & GLOBAL ---------- */
-    * {
+     {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -22,7 +21,7 @@
       overflow: hidden;
     }
 
-    /* ---------- APP LAYOUT ---------- */
+
     .app {
       display: flex;
       flex-direction: column;
@@ -146,7 +145,7 @@
       text-decoration: underline;
     }
 
-    /* ---------- MAIN CONTENT ---------- */
+
     .main {
       flex: 1;
       overflow-y: auto;
@@ -214,7 +213,6 @@
       margin-top: 1.2rem;
     }
 
-    /* ---------- MANAGE SERVICES – CATEGORIES & PRICES ALIGNED ---------- */
     .category-group {
       margin-bottom: 1.5rem;
     }
@@ -272,7 +270,7 @@
       color: #D43F6B;
     }
 
-    /* ---------- ANALYTICS & REPORTS (FULLY RESPONSIVE) ---------- */
+
     .filter-bar {
       display: flex;
       gap: 1rem;
@@ -307,7 +305,7 @@
       max-height: 260px;
       margin-top: 1rem;
     }
-    /* custom vertical legend under doughnut chart */
+
     .custom-legend {
       margin-top: 1rem;
       display: flex;
@@ -395,7 +393,7 @@
       margin: 0.3rem 0 0.8rem;
     }
 
-    /* ---------- MODAL (ADD / EDIT SERVICE) ---------- */
+
     .modal {
       display: none;
       position: fixed;
@@ -553,9 +551,6 @@
 </div>
 
 <script>
-  // ============================================================
-  // 1. SERVICE MANAGEMENT – real salon menu
-  // ============================================================
   let services = [
     { id: "n1", category: "Nail Treatments", name: "Buff and Shine", price: 120, duration: "30 min" },
     { id: "n2", category: "Nail Treatments", name: "Pedicure with polish", price: 300, duration: "45 min" },
